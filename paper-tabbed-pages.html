@@ -1,0 +1,49 @@
+<link rel="import" href="../iron-pages/iron-pages.html">
+<link rel="import" href="../paper-tabs/paper-tabs.html">
+<link rel="import" href="../paper-tabs/paper-tab.html">
+<link rel="import" href="../polymer/polymer.html">
+<!--
+  `<paper-tabbed-pages></paper-tabbed-pages>`  
+  @demo demo.html
+-->
+<dom-module id="paper-tabbed-pages">
+  <template>
+    <style>
+      :host {width:100%;display:inline-block;color:#505050}
+    </style>
+    
+    <paper-tabs selected="{{tab}}">
+      <template is="dom-repeat" items="[[tabs]]">
+        <template is="dom-if" if="{{!index}}">
+          <paper-tab id="firstTab">[[item]]</paper-tab>
+        </template>
+        <template is="dom-if" if="{{index}}">
+          <paper-tab>[[item]]</paper-tab>
+        </template>
+      </template>
+    </paper-tabs>
+    {{width}}
+    <div>
+      <iron-pages selected="{{tab}}">
+        <template is="dom-repeat" items="[[tabs]]">
+          <div style="display: flex;align-items: center;"><content select="[[getTag(index)]]-tab"></content></div>
+        </template>
+      </iron-pages>
+    </div>
+  </template>
+</dom-module>
+<script>
+  Polymer({
+    is: "paper-tabbed-pages",
+    properties:{
+      tabs:Array,
+      tab:{
+        type:Number,
+        value:0,
+      },
+    },
+    getTag: function(tab){
+      return this.tabs[tab]
+    },
+  })
+</script>

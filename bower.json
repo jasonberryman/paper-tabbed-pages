@@ -1,0 +1,15 @@
+{
+  "name": "paper-tabbed-pages",
+  "version": "1.0.0",
+  "description": "\n    \n    \n    \n  ",
+  "main": "paper-tabbed-pages.html",
+  "keywords": [
+    "polymer",
+    "web-components"
+  ],
+  "dependencies": {
+    "polymer": "*",
+    "paper-tabs": "*",
+    "iron-pages": "*"
+  }
+}
