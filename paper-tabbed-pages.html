@@ -12,7 +12,7 @@
       :host {width:100%;display:inline-block;color:#505050}
     </style>
     
-    <paper-tabs selected="{{tab}}">
+    <paper-tabs selected="{{tabIndex}}">
       <template is="dom-repeat" items="[[tabs]]">
         <template is="dom-if" if="{{!index}}">
           <paper-tab id="firstTab">[[item]]</paper-tab>
@@ -24,9 +24,9 @@
     </paper-tabs>
     {{width}}
     <div>
-      <iron-pages selected="{{tab}}">
+      <iron-pages selected="{{tabIndex}}">
         <template is="dom-repeat" items="[[tabs]]">
-          <div style="display: flex;align-items: center;"><content select="[[getTag(index)]]-tab"></content></div>
+          <div style="display: flex;align-items: center;"><content select="[[getTag(tabIndex)]]-tab"></content></div>
         </template>
       </iron-pages>
     </div>
@@ -37,13 +37,27 @@
     is: "paper-tabbed-pages",
     properties:{
       tabs:Array,
-      tab:{
+      tabIndex:{
         type:Number,
         value:0,
+      },
+      _setSelected:{
+        computed:"setSelected(tab,tabs)",
       },
     },
     getTag: function(tab){
       return this.tabs[tab]
+    },
+    setSelected: function(tabTitle,tabs){
+      var index = 0 
+      tabs.forEach(function(tab, i) {
+        if (tabTitle.toUpperCase() === tab.toUpperCase()) {
+          index = i
+        }
+      })
+      if (this.tabIndex !== index) {
+        this.tabIndex = index
+      }
     },
   })
 </script>
