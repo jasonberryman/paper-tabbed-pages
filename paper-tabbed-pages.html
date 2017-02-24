@@ -34,6 +34,10 @@
   Polymer({
     is: "paper-tabbed-pages",
     properties:{
+      tab:{
+        type:String,
+        notify:true,
+      },
       tabs:Array,
       tabIndex:{
         type:Number,
@@ -42,6 +46,14 @@
       _setSelected:{
         computed:"setSelected(tab,tabs)",
       },
+      _setTab:{
+        computed:"setTab(tabs,tabIndex)",
+      },
+    },
+    setTab: function(tabs,tabIndex) {
+      if (this.tab != tabs[tabIndex]){
+        this.tab = tabs[tabIndex]
+      }
     },
     setSelected: function(tabTitle,tabs){
       var index = 0 
