@@ -11,7 +11,6 @@
     <style>
       :host {width:100%;display:inline-block;color:#505050}
     </style>
-    
     <paper-tabs selected="{{tabIndex}}">
       <template is="dom-repeat" items="[[tabs]]">
         <template is="dom-if" if="{{!index}}">
@@ -22,11 +21,10 @@
         </template>
       </template>
     </paper-tabs>
-    {{width}}
     <div>
       <iron-pages selected="{{tabIndex}}">
         <template is="dom-repeat" items="[[tabs]]">
-          <div style="display: flex;align-items: center;"><content select="[[getTag(tabIndex)]]-tab"></content></div>
+          <div style="display: flex;align-items: center;"><content select="[[item]]-tab"></content></div>
         </template>
       </iron-pages>
     </div>
@@ -44,9 +42,6 @@
       _setSelected:{
         computed:"setSelected(tab,tabs)",
       },
-    },
-    getTag: function(tab){
-      return this.tabs[tab]
     },
     setSelected: function(tabTitle,tabs){
       var index = 0 
