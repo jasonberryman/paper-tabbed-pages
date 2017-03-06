@@ -51,8 +51,10 @@
       },
     },
     setTab: function(tabs,tabIndex) {
-      if (this.tab != tabs[tabIndex]){
-        this.tab = tabs[tabIndex]
+      if (Array.isArray(tabs)) {
+        if (this.tab != tabs[tabIndex]){
+          this.tab = tabs[tabIndex]
+        }
       }
     },
     setSelected: function(tabTitle,tabs){
